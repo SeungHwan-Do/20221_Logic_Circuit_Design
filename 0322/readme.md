@@ -46,5 +46,38 @@
  - 키워드는 wire (기본 1비트, 기본값 z)
  - Net : 키워드가 아니고 자료형의 클래스를 나타냄(wire, wand, wor ... )
  ## 레지스터
- - 저장된 요소를 나타낼수 있음
- - 
+ - 자료 저장소를 나타냄
+ - 다른 값이 저장되기 전까지 값을 유지함
+ - 키워드 : reg(기본값 x)
+```verilog
+reg reset; 
+initial
+begin
+ reset = 1'b1;
+ #100 reset = 1'b0
+end
+```
+## Signed register
+```verilog
+reg signed [63:0] m;
+integer i;
+```
+## 벡터
+- 다수 비트폭을 가짐
+- 비트 폭이 선언되지않으면, 기본값 1비트(scalar)
+- [높은 수:낮은 수] 또는 [낮은 수:높은 수]로 선언가능
+- 항상 왼쪽이 최상위비트(MSB)
+```verilog
+wire a;
+wire [7:0] bus;
+
+reg clock;
+reg [0:40] virtual_addr;
+```
+## 벡터 부분선택
+```verilog
+busA[7]
+bus[2:0] // bus[0:2]는 불가능, 선언을 high:low로 했기때문
+virtual_addr[0:1]
+```
+
